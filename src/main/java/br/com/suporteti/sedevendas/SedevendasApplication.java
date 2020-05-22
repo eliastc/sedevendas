@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.suporteti.sedevendas.domain.Categoria;
 import br.com.suporteti.sedevendas.domain.Cidade;
+import br.com.suporteti.sedevendas.domain.Cliente;
+import br.com.suporteti.sedevendas.domain.Endereco;
 import br.com.suporteti.sedevendas.domain.Estado;
 import br.com.suporteti.sedevendas.domain.Produto;
+import br.com.suporteti.sedevendas.domain.enums.TipoCliente;
 import br.com.suporteti.sedevendas.repositories.CategoriaRepository;
 import br.com.suporteti.sedevendas.repositories.CidadeRepository;
+import br.com.suporteti.sedevendas.repositories.ClienteRepository;
+import br.com.suporteti.sedevendas.repositories.EnderecoRepository;
 import br.com.suporteti.sedevendas.repositories.EstadoRepository;
 import br.com.suporteti.sedevendas.repositories.ProdutoRepository;
 
@@ -30,6 +35,12 @@ public class SedevendasApplication implements CommandLineRunner {
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SedevendasApplication.class, args);
@@ -68,6 +79,18 @@ public class SedevendasApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente cli1 = new Cliente(null, "Maria Silva", "mariasilva@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+		
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220833", cli1, c1);
+		Endereco e2 = new Endereco(null, "Avenida Caxanga", "211", "Sala 2", "Torre", "50611-050", cli1, c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 	}
 
