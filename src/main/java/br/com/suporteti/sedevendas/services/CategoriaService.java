@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.suporteti.sedevendas.domain.Categoria;
+import br.com.suporteti.sedevendas.dto.CategoriaDTO;
 import br.com.suporteti.sedevendas.repositories.CategoriaRepository;
 import br.com.suporteti.sedevendas.services.exceptions.DataIntegrityException;
 import br.com.suporteti.sedevendas.services.exceptions.ObjectNaoFoundException;
@@ -54,6 +55,9 @@ public class CategoriaService {
 		return repo.findAll(pageRequest);
 	}
 
+	public  Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
+	}
 }
 
 
