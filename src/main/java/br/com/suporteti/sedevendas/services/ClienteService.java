@@ -30,11 +30,11 @@ public class ClienteService {
 
 	public Cliente update(Cliente obj) {
 		Cliente newObj = find(obj.getId());
-		updatedata(newObj, obj);
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
 	
-	private void updatedata(Cliente newObj, Cliente obj) {
+	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
 		
