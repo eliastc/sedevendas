@@ -17,7 +17,6 @@ import br.com.suporteti.sedevendas.domain.Endereco;
 import br.com.suporteti.sedevendas.domain.enums.TipoCliente;
 import br.com.suporteti.sedevendas.dto.ClienteDTO;
 import br.com.suporteti.sedevendas.dto.ClienteNewDTO;
-import br.com.suporteti.sedevendas.repositories.CidadeRepository;
 import br.com.suporteti.sedevendas.repositories.ClienteRepository;
 import br.com.suporteti.sedevendas.repositories.EnderecoRepository;
 import br.com.suporteti.sedevendas.services.exceptions.DataIntegrityException;
