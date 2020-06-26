@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.suporteti.sedevendas.domain.Cidade;
 import br.com.suporteti.sedevendas.domain.Cliente;
 import br.com.suporteti.sedevendas.domain.Endereco;
+import br.com.suporteti.sedevendas.domain.enums.Perfil;
 import br.com.suporteti.sedevendas.domain.enums.TipoCliente;
 import br.com.suporteti.sedevendas.dto.ClienteDTO;
 import br.com.suporteti.sedevendas.dto.ClienteNewDTO;
 import br.com.suporteti.sedevendas.repositories.ClienteRepository;
 import br.com.suporteti.sedevendas.repositories.EnderecoRepository;
+import br.com.suporteti.sedevendas.security.UserSS;
+import br.com.suporteti.sedevendas.services.exceptions.AuthorizationException;
 import br.com.suporteti.sedevendas.services.exceptions.DataIntegrityException;
 import br.com.suporteti.sedevendas.services.exceptions.ObjectNaoFoundException;
 
@@ -35,6 +38,12 @@ public class ClienteService {
 	private BCryptPasswordEncoder pe;
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNaoFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
