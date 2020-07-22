@@ -52,23 +52,23 @@ public class ClienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)	
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.GET)	
 	public ResponseEntity<List<ClienteDTO>> findAll() {
 		List<Cliente> list = service.findAll();
 		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(value = "/page", method = RequestMethod.GET)	
 	public ResponseEntity<Page<ClienteDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page,
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage,
