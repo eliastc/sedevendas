@@ -27,6 +27,8 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 	
+	
+	//@JsonBackReference faz associacao que ja foram feitas pelo outra lista no caso na classe Categoria
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable

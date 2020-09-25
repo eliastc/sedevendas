@@ -31,7 +31,7 @@ public class BR {
 
     /**
      * Valida CPF
-     *
+     *    VERIFICAR AULA 45   LINHA 38 (final String ssn)   linha 49 (final String tin)
      * @param ssn
      * @return
      */

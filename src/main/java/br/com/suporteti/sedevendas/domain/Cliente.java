@@ -40,7 +40,7 @@ public class Cliente implements Serializable {
 	@JsonIgnore
 	private String senha;
 	
-	
+	//JsonManagedReference
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
@@ -175,5 +175,4 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-
 }
