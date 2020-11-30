@@ -1,6 +1,7 @@
 package br.com.suporteti.sedevendas.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,10 @@ public class PedidoService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		Cliente cliente = clienteService.find(user.getId());
 		return repo.findByCliente(cliente, pageRequest);
+	}
+	
+	public List<Pedido> findAll() {
+		return repo.findAll();
 	}
 
 }

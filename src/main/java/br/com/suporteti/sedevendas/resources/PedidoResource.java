@@ -1,6 +1,8 @@
 package br.com.suporteti.sedevendas.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.suporteti.sedevendas.domain.Pedido;
+import br.com.suporteti.sedevendas.dto.PedidoDTO;
 import br.com.suporteti.sedevendas.services.PedidoService;
 
 @RestController
@@ -39,7 +42,7 @@ public class PedidoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<Pedido>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page,
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage,
@@ -47,5 +50,12 @@ public class PedidoResource {
 			@RequestParam(value="direction", defaultValue="DESC")String direction) {
 		Page<Pedido> list = service.findPage(page, linesPerPage, orderBy, direction);		
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<PedidoDTO>> findAll() {
+		List<Pedido> list = service.findAll();
+		List<PedidoDTO> listDto = list.stream().map(obj -> new PedidoDTO(obj)).collect(Collectors.toList());		
+		return ResponseEntity.ok().body(listDto);
 	}
 }

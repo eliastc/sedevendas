@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.suporteti.sedevendas.domain.PagamentoComBoleto;
 import br.com.suporteti.sedevendas.domain.PagamentoComCartao;
+import br.com.suporteti.sedevendas.domain.PagamentoaVista;
 
 @Configuration
 public class JacksonConfig {
@@ -17,7 +18,8 @@ public class JacksonConfig {
 		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder() {
 			public void configure(ObjectMapper objectMapper) {
 				objectMapper.registerSubtypes(PagamentoComCartao.class);
-				objectMapper.registerSubtypes(PagamentoComBoleto.class);
+				objectMapper.registerSubtypes(PagamentoComBoleto.class);				
+				objectMapper.registerSubtypes(PagamentoaVista.class);
 				super.configure(objectMapper);
 			}
 		};

@@ -26,7 +26,7 @@ public class ProdConfig {
 			return false;
 		}
 		
-		dbService.instantiatetestdatabase();
+		dbService.instantiateTestDatabase();
 		return true;
 	}
 	

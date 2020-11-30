@@ -2,13 +2,21 @@ package br.com.suporteti.sedevendas.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.suporteti.sedevendas.domain.Produto;
 
 public class ProdutoDTO implements Serializable{	
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min=3, max = 120, message = "O tamanho deve ser entre 3 e 120 caracteres")
 	private String nome;
+	
 	private Double preco;
 	
 	public ProdutoDTO() {		

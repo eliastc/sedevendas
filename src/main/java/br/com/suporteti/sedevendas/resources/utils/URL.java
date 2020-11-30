@@ -22,7 +22,7 @@ public class URL {
 			list.add(Integer.parseInt(vet[i]));
 		}
 		return list;
-		//essa linha faz a mesma coisa    Arrays.asList(s.split(",")).stream().map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+		//essa linha faz a mesma coisa usando lambda   Arrays.asList(s.split(",")).stream().map(x -> Integer.parseInt(x)).collect(Collectors.toList());
 		
 	}	
 	
