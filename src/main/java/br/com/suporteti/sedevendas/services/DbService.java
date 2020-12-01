@@ -157,7 +157,7 @@ public class DbService {
 		Produto p16 = new Produto(null, "AROMAT.MONZA 10ML UN", 6.02, UnidProd.UN);
 		Produto p17 = new Produto(null, "AROMAT.MONZA 10ML CX", 168.67, UnidProd.CX);
 		
-		/*
+		
 		//corrigir fazendo com que as categorias conheçam seus produtos associados
 		cat1.getProdutos().addAll(Arrays.asList(p2,p3,p4,p5));
 		cat77.getProdutos().addAll(Arrays.asList(p1));
@@ -181,7 +181,7 @@ public class DbService {
 		p15.getCategorias().addAll(Arrays.asList(cat2));
 		p16.getCategorias().addAll(Arrays.asList(cat2));
 		p17.getCategorias().addAll(Arrays.asList(cat2));
-		*/
+		
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10, cat11,
 				cat12, cat13, cat14, cat15, cat16, cat17, cat18, cat19, cat20, cat21, cat22, cat23, cat24, cat25, cat26,
