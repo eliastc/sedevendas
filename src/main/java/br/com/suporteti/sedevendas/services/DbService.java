@@ -190,10 +190,11 @@ public class DbService {
 				cat57, cat58, cat59, cat60, cat61, cat62, cat63, cat64, cat65, cat66, cat67, cat68, cat69, cat70, cat71,
 				cat72, cat73, cat74, cat75, cat76, cat77, cat78, cat79, cat80, cat81, cat82, cat83, cat84));
 		
-		prodRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17));
+		prodRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17)); 
 		
+	  
 		
-		Estado est1 = new Estado(null, "Pernambuco");
+		Estado est1 = new Estado(null, "Pernambuco"); 
 		Estado est2 = new Estado(null, "Alagoas");
 		Estado est3 = new Estado(null, "Bahia");
 		Estado est4 = new Estado(null, "Ceará");
@@ -409,8 +410,8 @@ public class DbService {
 		Cidade c185 = new Cidade(null, "Santa Maria da Boa Vista", est1);
 		
 		
-		
-		
+		 
+
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2, est3, est4, est5, est6, est7, est8, est9, est10, est11, est12, 
 				est13, est14, est15, est16, est17, est18, est19, est20, est21, est22, est23, est24, est25, est26));
@@ -421,7 +422,7 @@ public class DbService {
 				c81, c82, c83, c84, c85, c86, c87, c88, c89, c90, c91, c92, c93, c94, c95, c96, c97, c98, c99, c100, c101, c102, c103, c104, c105, c106, c107, c108,
 				c109, c110, c111, c112, c113, c114, c115, c116, c117, c118, c119, c120, c121, c122, c123, c124, c125, c126, c127, c128, c129, c130, c131, c132, c133, 
 				c134, c135, c136, c137, c138, c139, c140, c141, c142, c143, c144, c145, c146, c147, c148, c149, c150, c151, c152, c153, c154, c155, c156, c157, c158, c159,
-				c160, c161, c162, c163, c164, c165, c166, c167, c168, c169, c170, c171, c172, c173, c174, c175, c176, c177, c178, c179, c180, c181, c182, c183, c184, c185));
+				c160, c161, c162, c163, c164, c165, c166, c167, c168, c169, c170, c171, c172, c173, c174, c175, c176, c177, c178, c179, c180, c181, c182, c183, c184, c185)); 
 		
 		
 		Cliente cli1 = new Cliente(null, "Elias Teotonio", "eliascalado@hotmail.com", "36378912377", TipoCliente.PESSOAFISICA, pe.encode("123"));	
@@ -436,7 +437,8 @@ public class DbService {
 		
 		
 		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1));
+		enderecoRepository.saveAll(Arrays.asList(e1));   
+	
 	}
 
 }
