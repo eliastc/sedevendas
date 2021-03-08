@@ -2,6 +2,7 @@ package br.com.suporteti.sedevendas.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -17,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
 import br.com.suporteti.sedevendas.domain.Produto;
-
 import br.com.suporteti.sedevendas.dto.ProdutoDTO;
 import br.com.suporteti.sedevendas.resources.utils.URL;
 import br.com.suporteti.sedevendas.services.ProdutoService;
@@ -69,4 +68,12 @@ public class ProdutoResource {
 		Page<ProdutoDTO> listDto = list.map(obj -> new ProdutoDTO(obj));
 		return ResponseEntity.ok().body(listDto);
 	}
+	/*  no front end em  produtoService.ts return this.http.get(`${API_CONFIG.baseUrl}/produtos/?categorias=${categoria_id}`); se no metodo findPagenao passar  o value=/page
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<ProdutoDTO>> findAll() {
+		List<Produto> list = service.findAll();
+		List<ProdutoDTO> listDto = list.stream().map(obj -> new ProdutoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}   */
 }

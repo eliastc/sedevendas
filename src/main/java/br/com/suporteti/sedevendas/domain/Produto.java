@@ -17,8 +17,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.suporteti.sedevendas.domain.enums.UnidProd;
-
 @Entity
 public class Produto implements Serializable {	
 	private static final long serialVersionUID = 1L;
@@ -28,7 +26,7 @@ public class Produto implements Serializable {
 	private Integer id;
 	private String nome;
 	private Double preco;
-	private Integer medida;
+//	private Integer medida;
 	
 	
 	//@JsonBackReference faz associacao que ja foram feitas pelo outra lista no caso na classe Categoria
@@ -48,12 +46,12 @@ public class Produto implements Serializable {
 	public Produto() {		
 	}
 
-	public Produto(Integer id, String nome, Double preco, UnidProd medida) {
+	public Produto(Integer id, String nome, Double preco) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
-		this.medida = (medida==null) ? null : medida.getCod();
+		//this.medida = (medida==null) ? null : medida.getCod();
 	}
 	
 	@JsonIgnore
@@ -88,14 +86,14 @@ public class Produto implements Serializable {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	
+	/*
 	public UnidProd getMedida() {
 		return UnidProd.toEnum(medida);
 	}
 	
 	public void setMedida(UnidProd medida) {
 		this.medida = medida.getCod();
-	}
+	}   */
 
 	public List<Categoria> getCategorias() {
 		return categorias;

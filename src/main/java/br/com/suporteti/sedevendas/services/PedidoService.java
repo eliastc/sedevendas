@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.suporteti.sedevendas.domain.Cliente;
 import br.com.suporteti.sedevendas.domain.ItemPedido;
 import br.com.suporteti.sedevendas.domain.PagamentoComBoleto;
+import br.com.suporteti.sedevendas.domain.PagamentoComCartao;
+import br.com.suporteti.sedevendas.domain.PagamentoaVista;
 import br.com.suporteti.sedevendas.domain.Pedido;
 import br.com.suporteti.sedevendas.domain.enums.EstadoPagamento;
 import br.com.suporteti.sedevendas.repositories.ItemPedidoRepository;
@@ -30,6 +32,9 @@ public class PedidoService {
 
 	@Autowired
 	private BoletoService boletoService;
+	
+	@Autowired
+	private CartaoService cartaoService;
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
@@ -63,7 +68,15 @@ public class PedidoService {
 			PagamentoComBoleto pagto = (PagamentoComBoleto) obj.getPagamento();
 			boletoService.preencherPagamentoComBoleto(pagto, obj.getInstante());
 		}
-
+		else if (obj.getPagamento() instanceof PagamentoComCartao) {
+			PagamentoComCartao pagto2 = (PagamentoComCartao) obj.getPagamento();
+			cartaoService.pagarComCartao(pagto2, obj.getInstante());
+		
+		}
+		else if (obj.getPagamento() instanceof PagamentoaVista) {
+			PagamentoaVista pagto3 = (PagamentoaVista) obj.getPagamento();
+			vistaService.pagaraVista(pagto3, obj.getInstante());
+		}
 		obj = repo.save(obj);
 		pagamentoRepository.save(obj.getPagamento());
 		for (ItemPedido ip : obj.getItens()) {
@@ -77,6 +90,7 @@ public class PedidoService {
 		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
 	}
+
 
 	public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		UserSS user = UserService.authenticated();

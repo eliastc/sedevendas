@@ -8,12 +8,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-
 import org.springframework.stereotype.Service;
 
 import br.com.suporteti.sedevendas.domain.Categoria;
 import br.com.suporteti.sedevendas.domain.Produto;
-
 import br.com.suporteti.sedevendas.dto.ProdutoDTO;
 import br.com.suporteti.sedevendas.repositories.CategoriaRepository;
 import br.com.suporteti.sedevendas.repositories.ProdutoRepository;
@@ -52,12 +50,12 @@ public class ProdutoService {
 	public Page<Produto> search(String nome, List<Integer> ids, Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		List<Categoria> categorias = categoriaRepository.findAllById(ids);
-		return repo.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
+		return repo.findDistinctByNomeIgnoreCaseContainingAndCategoriasIn(nome, categorias, pageRequest);
 		
 	}
 	
 	public  Produto fromDTO(ProdutoDTO objDto) {
-		return new Produto(objDto.getId(), objDto.getNome(), objDto.getPreco(), null);
+		return new Produto(objDto.getId(), objDto.getNome(), objDto.getPreco());
 	}
 
 	public List<Produto> findAll() {

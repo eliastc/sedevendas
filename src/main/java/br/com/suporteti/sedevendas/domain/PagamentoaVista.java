@@ -19,17 +19,17 @@ public class PagamentoaVista  extends Pagamento {
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataPagamento;
-	
+	/*
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date instante;
+	private Date instante;  */
 	
 	public PagamentoaVista() {		
 	}
 
-	public PagamentoaVista(Integer id, EstadoPagamento estado, Pedido pedido, Date dataPagamento, Date instante ) {
+	public PagamentoaVista(Integer id, EstadoPagamento estado, Pedido pedido, Date dataPagamento ) {
 		super(id, estado, pedido);
 		this.dataPagamento = dataPagamento;
-		this.instante = instante;
+	//	this.instante = instante;
 	}
 	
 	public Date getDataPagamento() {
@@ -39,14 +39,14 @@ public class PagamentoaVista  extends Pagamento {
 	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
-	
+	/*
 	public Date getInstante() {
 		return instante;
 	}
 
 	public void setInstante(Date instante) {
 		this.instante = instante;
-	}
+	}  */
 	
 	
 }
